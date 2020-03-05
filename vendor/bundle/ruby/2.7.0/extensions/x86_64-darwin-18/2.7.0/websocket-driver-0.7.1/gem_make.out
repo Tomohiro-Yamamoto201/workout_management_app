@@ -1,0 +1,15 @@
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+/Users/yamamo_totomohiro/.rbenv/versions/2.7.0/bin/ruby -I /Users/yamamo_totomohiro/.rbenv/versions/2.7.0/lib/ruby/2.7.0 -r ./siteconf20200304-3888-1u3cefv.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.7.0/gems/websocket-driver-0.7.1/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20200304-3888-1ogyeo4
