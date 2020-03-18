@@ -1,0 +1,15 @@
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+/Users/yamamo_totomohiro/.rbenv/versions/2.6.5/bin/ruby -I /Users/yamamo_totomohiro/.rbenv/versions/2.6.5/lib/ruby/2.6.0 -r ./siteconf20200309-82315-aydibu.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.bundle
+
+current directory: /Users/yamamo_totomohiro/workout_management_app/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20200309-82315-yre8a6/skiptrace/internal
