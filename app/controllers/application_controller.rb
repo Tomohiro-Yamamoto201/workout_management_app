@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
         pages_show_path
     end
 
-    
+    def post_params
+        params.require(:user).permit(:nickname, :gender, :height, :body_weight)
+      end
 
     private
         def sign_in_required
