@@ -1,16 +1,19 @@
 class ApplicationController < ActionController::Base
 
-    def after_sign_in_path_for(resource)
-        pages_show_path
-    end
-
-    def post_params
-        params.require(:user).permit(:nickname, :gender, :height, :body_weight)
-      end
+    before_action :configure_permitted_parameters, if: :devise_controller?
 
     private
-        def sign_in_required
-            redirect_to new_user_session_url unless user_signed_in?
-        end
+    def configure_permitted_parameters　#任意のカラムの値を保存
+        devise_parameter_sanitizer.for(:sign_up) << :nickname, :gender, :height, :body_weight, :born_on
+    end
+
+    def after_sign_in_path_for(resource)
+        users_show_path # ログイン後に遷移するpathを設定
+     end
+    
+     def after_sign_out_path_for(resource)
+        root_path # ログアウト後に遷移するpathを設定
+     end
+
 
 end
