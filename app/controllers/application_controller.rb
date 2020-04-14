@@ -4,16 +4,18 @@ class ApplicationController < ActionController::Base
 
     private
    
-    
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :gender, :height, :body_weight, :born_on])
+    end
     
 
     def after_sign_in_path_for(resource)
         users_show_path # ログイン後に遷移するpathを設定
-     end
+    end
     
-     def after_sign_out_path_for(resource)
+    def after_sign_out_path_for(resource)
         root_path # ログアウト後に遷移するpathを設定
-     end
+    end
 
 
 end
