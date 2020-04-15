@@ -4,50 +4,50 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.nickname_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    <%= f.label :ニックネーム %><br />
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.gender_field :gender, autofocus: true, autocomplete: "gender" %>
+    <%= f.label :性別 %><br />
+    <%= f.text_field :gender, autofocus: true, autocomplete: "gender" %>
   </div>
 
   <div class="field">
-    <%= f.label :height %><br />
-    <%= f.height_field :, autofocus: true, autocomplete: "height" %>
+    <%= f.label :身長 %><br />
+    <%= f.text_field :height, autofocus: true, autocomplete: "height" %>
   </div>
 
   <div class="field">
-    <%= f.label :body_weight %><br />
-    <%= f.body_weight_field :, autofocus: true, autocomplete: "body_weight" %>
+    <%= f.label :体重 %><br />
+    <%= f.text_field :body_weight, autofocus: true, autocomplete: "body_weight" %>
   </div>
 
   <div class="field">
-    <%= f.label :born_on %><br />
-    <%= f.born_on_field :, autofocus: true, autocomplete: "born_on" %>
+    <%= f.label :生年月日 %><br />
+    <%= f.text_field :born_on, autofocus: true, autocomplete: "born_on" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :パスワード %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :パスワード（確認用） %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "アカウント作成" %>
   </div>
 <% end %>
 
