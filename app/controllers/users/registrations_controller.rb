@@ -22,6 +22,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :new
     end
 
+    def user_params
+      params.require(:user).permit(:nickname, :email, :gender, :height,
+      :body_weight, :born_on, :password,:password_confirmation)
+    end
+
   end
 
   # GET /resource/edit
