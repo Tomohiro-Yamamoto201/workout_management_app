@@ -6,38 +6,43 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    @user = User.new
+    super
+    build_resource
+    yield resource if block_given?
   end
 
   # POST /resource
   def create
-    @user = User.new(user_params) 
-
-    if @user.save
-      flash[:success] = "ユーザを登録しました"
-      redirect_to @user
-
+    super
+    build_resource(sign_up_params)
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
     else
-      flash[:danger] = "ユーザの登録に失敗しました"
-      render :new
-    end
-
-    def user_params
-      params.require(:user).permit(:nickname, :email, :gender, :height,
-      :body_weight, :born_on, :password,:password_confirmation)
+      clean_up_passwords resource
+      set_minimum_password_length
     end
 
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -53,7 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
