@@ -14,7 +14,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-    resource.save
+    resource.update(confirmed_at: Time .now.utc)       # Welcomeメールを送信した上で、skip_confirmation!と同一処理を行い自動で認証クローズさせる
+      #↓と同じ意味になります。
+      # resource.skip_confirmation!
+      # resource.save
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -29,7 +32,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      respond_with resource
     end
 
   end
