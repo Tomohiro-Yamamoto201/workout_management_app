@@ -1,5 +1,5 @@
 class TrainingsController < ApplicationController
-    def index
+      def index
         @trainings = Training.all
       end
     
