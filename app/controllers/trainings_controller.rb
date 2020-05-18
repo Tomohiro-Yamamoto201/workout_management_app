@@ -12,7 +12,7 @@ class TrainingsController < ApplicationController
       end
     
       def create
-        Training.create(Training_parameter)
+        Training.create(training_parameter)
         redirect_to Trainings_path
       end
     
@@ -38,6 +38,6 @@ class TrainingsController < ApplicationController
       private
     
       def training_parameter
-        params.require(:Training).permit(:title, :content, :start_time)
+        params.require(:training).permit(:title, :content, :start_time)
       end
 end
