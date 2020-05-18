@@ -16,7 +16,7 @@
       <tr>
         <td><%= training.title %></td>
         <td><%= training.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= link_to 'Show', training %></td>
+        <td><%= link_to 'Show', training_path(training) %></td>
         <td><%= link_to 'Edit', edit_training_path(training.id) %></td>
         <td><%= link_to 'Destroy',training_path(training.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
