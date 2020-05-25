@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_201937) do
+ActiveRecord::Schema.define(version: 2020_05_25_153805) do
+
+  create_table "training_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_training_reports_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_training_reports_on_user_id"
+  end
 
   create_table "trainings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -54,4 +63,5 @@ ActiveRecord::Schema.define(version: 2020_05_05_201937) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "training_reports", "users"
 end
