@@ -38,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    render :edit
+    render 'edit'
   end
 
   # PUT /resource
