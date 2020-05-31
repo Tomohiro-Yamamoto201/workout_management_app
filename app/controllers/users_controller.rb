@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+
+  before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: :destroy
+
   def index
     @users = User.all
   end
@@ -47,6 +51,11 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:nickname, :email, :gender, :height,
       :body_weight, :born_on, :password, :password_confirmation)
+    end
+
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 
 end
