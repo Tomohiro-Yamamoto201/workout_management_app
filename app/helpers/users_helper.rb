@@ -5,6 +5,8 @@ module UsersHelper
     session[:user_id] = user.id
   end
 
+  
+
   # 永続セッションとしてユーザーを記憶する
   def remember(user)
     user.remember
