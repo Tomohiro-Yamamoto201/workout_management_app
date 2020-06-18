@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_011937) do
+ActiveRecord::Schema.define(version: 2020_06_16_065448) do
 
   create_table "training_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", null: false
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 2020_05_31_011937) do
     t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "training_category", null: false
+    t.string "training_name", null: false
+    t.bigint "training_menu_id", null: false
+    t.bigint "{:null=>false, :index=>true, :foreign_key=>true}_id"
+    t.string "growing_parts", null: false
+    t.index ["training_menu_id"], name: "index_trainings_on_training_menu_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
