@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_065448) do
+ActiveRecord::Schema.define(version: 2020_06_22_150934) do
+
+  create_table "training_menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "training_menu"
+    t.datetime "published_at"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_training_menus_on_user_id"
+  end
 
   create_table "training_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "content", null: false
@@ -30,7 +39,6 @@ ActiveRecord::Schema.define(version: 2020_06_16_065448) do
     t.string "training_category", null: false
     t.string "training_name", null: false
     t.bigint "training_menu_id", null: false
-    t.bigint "{:null=>false, :index=>true, :foreign_key=>true}_id"
     t.string "growing_parts", null: false
     t.index ["training_menu_id"], name: "index_trainings_on_training_menu_id"
   end
@@ -70,5 +78,6 @@ ActiveRecord::Schema.define(version: 2020_06_16_065448) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "training_menus", "users"
   add_foreign_key "training_reports", "users"
 end
