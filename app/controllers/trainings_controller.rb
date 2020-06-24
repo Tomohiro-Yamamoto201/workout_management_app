@@ -4,16 +4,20 @@ class TrainingsController < ApplicationController
       end
     
       def new
-        @trainings = Training.new
+        @training = Training.new
       end
     
       def show
-        @trainings = Training.find(params[:id])
+        @training = Training.find(params[:id])
       end
     
       def create
-        Training.create(training_parameter)
-        redirect_to Trainings_path
+        @training = Training.new(training_parameter)
+        if @training.save
+            redirect_to @training
+        else        
+            render 'new'
+        end   
       end
     
       def destroy
