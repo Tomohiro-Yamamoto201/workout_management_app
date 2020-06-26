@@ -4,6 +4,7 @@ class User < ApplicationRecord
   uniqueness: { case_sensitive: false }
 
   has_many :training_reports
+  has_many :training_menus
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

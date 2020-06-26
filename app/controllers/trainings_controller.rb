@@ -16,7 +16,7 @@ class TrainingsController < ApplicationController
         if @training.save
             redirect_to @training
         else        
-            render 'new'
+            render 'index'
         end   
       end
     
