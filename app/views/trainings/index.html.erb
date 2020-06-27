@@ -26,14 +26,14 @@
 
 <br>
 
-<%= link_to '日記をかく', new_training_path %>
+<%= link_to '新規メニュー作成', new_training_path %>
 
 <%= month_calendar events: @trainings do |date, trainings| %>
     <%= date.day %>
 
     <% trainings.each do |training| %>
       <div>
-        <%= link_to training.title, training %>
+        <%= link_to training.title, training.id %>
       </div>
     <% end %>
 <% end %>

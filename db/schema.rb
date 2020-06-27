@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_201937) do
+ActiveRecord::Schema.define(version: 2020_06_22_150934) do
+
+  create_table "training_menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "training_menu"
+    t.datetime "published_at"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_training_menus_on_user_id"
+  end
+
+  create_table "training_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_training_reports_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_training_reports_on_user_id"
+  end
 
   create_table "trainings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -18,6 +36,11 @@ ActiveRecord::Schema.define(version: 2020_05_05_201937) do
     t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "training_category", null: false
+    t.string "training_name", null: false
+    t.bigint "training_menu_id", null: false
+    t.string "growing_parts", null: false
+    t.index ["training_menu_id"], name: "index_trainings_on_training_menu_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -48,10 +71,13 @@ ActiveRecord::Schema.define(version: 2020_05_05_201937) do
     t.string "provider"
     t.string "uid"
     t.string "username"
+    t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "training_menus", "users"
+  add_foreign_key "training_reports", "users"
 end
