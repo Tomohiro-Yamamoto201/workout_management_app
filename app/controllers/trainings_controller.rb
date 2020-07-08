@@ -1,4 +1,6 @@
 class TrainingsController < ApplicationController
+      require 'pry'
+      
       def index
         @trainings = Training.all
       end
@@ -14,9 +16,9 @@ class TrainingsController < ApplicationController
       def create
         @training = Training.new(training_parameter)
         if @training.save
-            redirect_to @training
+            redirect_to trainings_path(@user.id)
         else        
-            render 'index'
+            redirect_to new_training_path
         end   
       end
     
