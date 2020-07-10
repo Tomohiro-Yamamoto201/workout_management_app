@@ -1,2 +1,13 @@
-<h1>TrainingMenus#new</h1>
-<p>Find me in app/views/training_menus/new.html.erb</p>
+<%= form_with(model: @training_menu, local: true) do |form| %>
+
+    <div class="title">
+      <%= form.label :メニュー名 %>
+      <%= form.text_field :training_menu %>
+    </div>
+  
+    <div class="submit">
+      <%= form.submit %>
+      
+    </div>
+  
+<% end %>

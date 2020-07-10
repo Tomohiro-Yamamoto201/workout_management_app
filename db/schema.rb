@@ -36,11 +36,7 @@ ActiveRecord::Schema.define(version: 2020_06_22_150934) do
     t.datetime "start_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "training_category", null: false
-    t.string "training_name", null: false
-    t.bigint "training_menu_id", null: false
     t.string "growing_parts", null: false
-    t.index ["training_menu_id"], name: "index_trainings_on_training_menu_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

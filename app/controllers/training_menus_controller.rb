@@ -13,6 +13,7 @@ class TrainingMenusController < ApplicationController
   end
 
   def create
+    binding.pry
     @training_menu = TrainingMenu.new(training_menu_parameter)
     if @training_menu.save
         redirect_to new_training_path(@user.id)
