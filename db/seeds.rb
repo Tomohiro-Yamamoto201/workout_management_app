@@ -16,4 +16,7 @@ User.create!(nickname:  "Example User",
              password_confirmation: "foobar",
              admin: true)
              
-
+TrainingMenu.create!(
+    training_menu: "ベンチプレス",
+    user_id: "1"
+)
