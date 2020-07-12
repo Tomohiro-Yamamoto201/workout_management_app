@@ -13,12 +13,13 @@ class TrainingMenusController < ApplicationController
   end
 
   def create
-    binding.pry
     @training_menu = TrainingMenu.new(training_menu_parameter)
     if @training_menu.save
         redirect_to new_training_path(@user.id)
+        flash[:success] = "メニュー名を決定しました。詳細情報を入力してください"
     else        
-        redirect_to new_training_menu_path
+        redirect_to trainings_path
+        flash[:danger] = "メニュー名の決定に失敗しました。正しい情報を入力してください"
     end   
   end
 
@@ -44,6 +45,6 @@ class TrainingMenusController < ApplicationController
   private
 
   def training_menu_parameter
-    params.require(:training_menu).permit(:training_menu)
+    params.require(:training_menu).permit(:training_menu, :user_id)
   end
 end
