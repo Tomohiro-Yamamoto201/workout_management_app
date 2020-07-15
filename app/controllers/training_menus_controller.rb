@@ -14,6 +14,7 @@ class TrainingMenusController < ApplicationController
 
   def create
     @training_menu = TrainingMenu.new(training_menu_parameter)
+    @user = User.new(params[:id])
     if @training_menu.save
         redirect_to new_training_path(@user.id)
         flash[:success] = "メニュー名を決定しました。詳細情報を入力してください"
