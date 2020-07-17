@@ -2,19 +2,19 @@ class TrainingsController < ApplicationController
       require 'pry'
       
       def index
-        @trainings = Training.all
+        @trainings = current_user.trainings.all
       end
     
       def new
-        @training = Training.new
+        @training = current_user.trainings
       end
     
       def show
-        @training = Training.find(params[:id])
+        @training = current_user.trainings.find(params[:id])
       end
     
       def create
-        @training = Training.new(training_parameter)
+        @training = current_user.trainings.new(training_parameter)
         if @training.save
             redirect_to trainings_path(@user.id)
         else        
@@ -23,17 +23,17 @@ class TrainingsController < ApplicationController
       end
     
       def destroy
-        @training = Training.find(params[:id])
+        @training = current_user.trainings.find(params[:id])
         @training.destroy
         redirect_to trainings_path, notice:"削除しました"
       end
     
       def edit
-        @training = Training.find(params[:id])
+        @training = current_user.trainings.find(params[:id])
       end
     
       def update
-        @training = Training.find(params[:id])
+        @training = current_user.trainings.find(params[:id])
         if @training.update(training_parameter)
           redirect_to trainings_path, notice: "編集しました"
         else
