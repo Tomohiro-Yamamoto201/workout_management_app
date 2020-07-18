@@ -1,20 +1,19 @@
 class TrainingMenusController < ApplicationController
-  before_action :set_user
 
   def index
     @training_menus = current_user.training_menus
   end
 
   def new
-    @training_menu = current_user.training_menus
+    @training_menu = TrainingMenu.new
   end
 
   def show
-    @training_menu = current_user.training_menus.find(params[:id])
+    @training_menu = current_user.TrainingMenu.find(params[:id])
   end
 
   def create
-    @training_menu = current_user.training_menus.new(training_menu_parameter)
+    @training_menu = current_user.TrainingMenu.new(training_menu_parameter)
     if @training_menu.save
         redirect_to new_training_path(@user.id)
         flash[:success] = "メニュー名を決定しました。詳細情報を入力してください"
@@ -47,10 +46,6 @@ class TrainingMenusController < ApplicationController
 
   def training_menu_parameter
     params.require(:training_menu).permit(:training_menu, :user_id)
-  end
-
-  def set_user
-    @user = User.find(params[:id])
   end
 
 end

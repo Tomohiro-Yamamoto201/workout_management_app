@@ -2,11 +2,11 @@ class TrainingsController < ApplicationController
       require 'pry'
       
       def index
-        @trainings = Training.where(id: "current_user.id")
+        @trainings = Training.where(id:current_user.id)
       end
     
       def new
-        @training = current_user.trainings
+        @training = current_user.trainings(current_user.id)
       end
     
       def show
