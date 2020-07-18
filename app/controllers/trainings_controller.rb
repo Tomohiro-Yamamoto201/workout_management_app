@@ -6,7 +6,7 @@ class TrainingsController < ApplicationController
       end
     
       def new
-        @training = current_user.trainings(current_user.id)
+        @training = Training.new
       end
     
       def show
