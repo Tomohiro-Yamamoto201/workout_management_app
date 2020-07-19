@@ -1,7 +1,8 @@
 class TrainingMenusController < ApplicationController
 
   def index
-    @training_menus = current_user.training_menus
+    # 現在のユーザーに紐づいているトレーニングメニューを取得する
+    @training_menus = TrainingMenu.where(user_id: current_user.id)
   end
 
   def new
@@ -9,14 +10,16 @@ class TrainingMenusController < ApplicationController
   end
 
   def show
-    @training_menu = current_user.TrainingMenu.find(params[:id])
+    # ビューからトレーニングメニューのidを受け取り、それをインタスタンス変数に格納する
+    @training_menu = TrainingMenu.find(params[:id])
   end
 
   def create
-    @training_menu = current_user.training_menus.new(training_menu_parameter)
-    @user = User.find_by(id:current_user.id)
+    # ビューから受け取ったものでトレーニングメニューを作り、saveする
+    @training_menu = TrainingMenu.new(training_menu_parameter)
+    binding.pry
     if @training_menu.save
-        redirect_to new_training_path(@user.id)
+        redirect_to new_training_path(current_user.id)
         flash[:success] = "メニュー名を決定しました。詳細情報を入力してください"
     else        
         redirect_to trainings_path
@@ -25,17 +28,20 @@ class TrainingMenusController < ApplicationController
   end
 
   def destroy
-    @training_menu = current_user.training_menus.find(params[:id])
-    @training_menu.destroy
-    redirect_to training_menus_path, notice:"削除しました"
+    @training_menu = TrainingMenu.find(params[:id])
+    if @training_menu.destroy
+        redirect_to training_menus_path, notice:"削除しました"
+    else
+        redirect_to trainings_path
+    end
   end
 
   def edit
-    @training_menu = current_user.training_menus.find(params[:id])
+    @training_menu = TrainingMenu.find(params[:id])
   end
 
   def update
-    @training_menu = current_user.training_menus.find(params[:id])
+    @training_menu = TrainingMenu.find(params[:id])
     if @training_menu.update(training_menu_parameter)
       redirect_to trainings_path, notice: "編集しました"
     else
@@ -46,7 +52,7 @@ class TrainingMenusController < ApplicationController
   private
 
   def training_menu_parameter
-    params.require(:training_menu).permit(:training_menu, :user_id)
+    params.require(:training_menu).permit(:training_menu, :published_at, :user_id)
   end
 
 end
