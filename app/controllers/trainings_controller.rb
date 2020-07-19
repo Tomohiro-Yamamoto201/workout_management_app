@@ -15,6 +15,7 @@ class TrainingsController < ApplicationController
     
       def create
         @training = current_user.trainings.new(training_parameter)
+        @user = User.find_by(id:current_user.id)
         if @training.save
             redirect_to trainings_path(@user.id)
         else        
