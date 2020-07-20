@@ -15,13 +15,13 @@ class TrainingsController < ApplicationController
     
       def create
         @training = Training.new(training_parameter)
-        if @training.save
+        @training.user = current_user
+        @training.save!
             redirect_to training_path(current_user.id)
             flash[:success] = "トレーニング予定を作成しました"
-        else        
-            redirect_to new_trainings_path
-            flash[:danger] = "トレーニング予定を作成できませんでした。正しい情報を入力してください"
-        end   
+               
+            # redirect_to new_trainings_path
+            # flash[:danger] = "トレーニング予定を作成できませんでした。正しい情報を入力してください"
       end
     
       def destroy
