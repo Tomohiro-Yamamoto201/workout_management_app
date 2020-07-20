@@ -6,6 +6,7 @@ class TrainingMenusController < ApplicationController
   end
 
   def new
+    # インスタンス変数を作成
     @training_menu = TrainingMenu.new
   end
 
@@ -17,7 +18,7 @@ class TrainingMenusController < ApplicationController
   def create
     # ビューから受け取ったものでトレーニングメニューを作り、saveする
     @training_menu = TrainingMenu.new(training_menu_parameter)
-    binding.pry
+    @training_menu.user = current_user
     if @training_menu.save
         redirect_to new_training_path(current_user.id)
         flash[:success] = "メニュー名を決定しました。詳細情報を入力してください"
@@ -29,6 +30,7 @@ class TrainingMenusController < ApplicationController
 
   def destroy
     @training_menu = TrainingMenu.find(params[:id])
+#     ここは保存できたかどうかで場合わけして良いと思います。中身は変更ください。
     if @training_menu.destroy
         redirect_to training_menus_path, notice:"削除しました"
     else
