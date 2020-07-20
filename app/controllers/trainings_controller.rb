@@ -10,31 +10,35 @@ class TrainingsController < ApplicationController
       end
     
       def show
-        @training = current_user.trainings.find(params[:id])
+        @training_menu = TrainingMenu.find(params[:id])
       end
     
       def create
-        @training = current_user.trainings.new(training_parameter)
-        @user = User.find_by(id:current_user.id)
+        @training = Training.new(training_parameter)
         if @training.save
-            redirect_to trainings_path(@user.id)
+            redirect_to training_path(current_user.id)
+            flash[:success] = "トレーニング予定を作成しました"
         else        
-            redirect_to new_training_path
+            redirect_to new_trainings_path
+            flash[:danger] = "トレーニング予定を作成できませんでした。正しい情報を入力してください"
         end   
       end
     
       def destroy
-        @training = current_user.trainings.find(params[:id])
-        @training.destroy
-        redirect_to trainings_path, notice:"削除しました"
+        @training = Training.find(params[:id])
+        if @training_menu.destroy
+            redirect_to trainings_path, notice:"削除しました"
+        else
+            redirect_to trainings_path, notice:"削除できませんでした"
+        end
       end
     
       def edit
-        @training = current_user.trainings.find(params[:id])
+        @training = Training.find(params[:id])
       end
     
       def update
-        @training = current_user.trainings.find(params[:id])
+        @training = Training.find(params[:id])
         if @training.update(training_parameter)
           redirect_to trainings_path, notice: "編集しました"
         else

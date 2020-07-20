@@ -18,6 +18,7 @@ class TrainingMenusController < ApplicationController
   def create
     # ビューから受け取ったものでトレーニングメニューを作り、saveする
     @training_menu = TrainingMenu.new(training_menu_parameter)
+    @training_menu.user = current_user
     if @training_menu.save
         redirect_to new_training_path(current_user.id)
         flash[:success] = "メニュー名を決定しました。詳細情報を入力してください"
@@ -32,10 +33,8 @@ class TrainingMenusController < ApplicationController
 #     ここは保存できたかどうかで場合わけして良いと思います。中身は変更ください。
     if @training_menu.destroy
         redirect_to training_menus_path, notice:"削除しました"
-        flash[:success] = "メニュー名を決定しました。詳細情報を入力してください"
-    else        
+    else
         redirect_to trainings_path
-        flash[:danger] = "メニュー名の決定に失敗しました。正しい情報を入力してください"
     end
   end
 
