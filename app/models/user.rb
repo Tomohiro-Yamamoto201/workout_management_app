@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_many :training_reports
   has_many :training_menus
+  has_many :trainings
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -10,7 +10,7 @@ class TrainingsController < ApplicationController
       end
     
       def show
-        @training_menu = TrainingMenu.find(params[:id])
+        @training = Training.find(params[:id])
       end
     
       def create
