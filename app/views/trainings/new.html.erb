@@ -1,8 +1,8 @@
 <%= form_with(model: @training, local: true) do |form| %>
 
-    <p>
-    <%= @training_menus %>
-    </p>
+    <% @training_menus.each do |training_menu| %>
+        <td><%= training_menu.training_menu %></td>
+    <% end %>
 
     <div class="title">
       <%= form.label :タイトル %>
