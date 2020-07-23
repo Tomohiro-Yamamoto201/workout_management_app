@@ -7,6 +7,7 @@ class TrainingsController < ApplicationController
     
       def new
         @training = Training.new
+        @training_menus = TrainingMenu.where(user_id:current_user.id)
       end
     
       def show
@@ -16,6 +17,7 @@ class TrainingsController < ApplicationController
       def create
         @training = Training.new(training_parameter)
         @training.user = current_user
+        @training_menus = TrainingMenu.where(user_id:current_user.id)
         @training.save!
             redirect_to training_path(current_user.id)
             flash[:success] = "トレーニング予定を作成しました"
