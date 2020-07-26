@@ -30,10 +30,4 @@
 
 <%= month_calendar events: @trainings do |date, trainings| %>
     <%= date.day %>
-
-    <% trainings.each do |training| %>
-      <div>
-        <%= link_to training.title, training.id %>
-      </div>
-    <% end %>
 <% end %>
