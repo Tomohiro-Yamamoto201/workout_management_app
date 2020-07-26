@@ -22,7 +22,7 @@ class TrainingsController < ApplicationController
             redirect_to training_path(current_user.id)
             flash[:success] = "トレーニング予定を作成しました"
         else
-            redirect_to new_trainings_path
+            redirect_to new_training_path
             flash[:danger] = "トレーニング予定を作成できませんでした。正しい情報を入力してください"
         end
       end
