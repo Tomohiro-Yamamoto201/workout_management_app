@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>タイトル</strong>
+  <%= @training_menu.training_menu %>
+</p>
+
+<p>
+  <strong>時間</strong>
+  <%= @training.start_time.strftime("%Y-%m-%d %H:%M") %>
+</p>
+
+<p>
+  <strong>内容</strong>
+  <%= @training.content %>
+</p>
+
+<p>
+  <strong>成長部位</strong>
+  <%= @training.growing_parts %>
+</p>
+
+<%= link_to 'Edit', edit_training_path(@training) %> |
+<%= link_to 'Back', training_menus_path %>
