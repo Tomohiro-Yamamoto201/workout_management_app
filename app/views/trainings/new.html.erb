@@ -1,9 +1,11 @@
-<%= form_with(model: @training, local: true) do |form| %>
+<%= form_with(model: [@training,@training_menu], local: true) do |form| %>
 
     <div class="title">
-      <%= form.label :タイトル, value: @training_menu.training_menu  %>
+      <%= form.label :タイトル %> 
+      <%= form.text_field :training_menu %>
     </div>
-  
+    #value: @training_menu.training_menu 
+
     <div class="time">
       <%= form.label :スケジュール %>
       <%= form.datetime_select :start_time %>
