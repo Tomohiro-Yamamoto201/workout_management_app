@@ -7,7 +7,7 @@ class TrainingsController < ApplicationController
     
       def new
         @training = Training.new
-        @training_menu = TrainingMenu.where(user_id:current_user.id)
+        @training_menu = TrainingMenu.where(user_id:current_user.id).last
       end
     
       def show
