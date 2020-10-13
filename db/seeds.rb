@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user_1 = User.create!(nickname:  "Example User",
-             email: "example@example",
+             email: "example@example1",
              gender: 1,
              height: 170,
              body_weight: 60,
@@ -20,3 +20,6 @@ training_menu_1 = TrainingMenu.create!(training_menu: "腕立て伏せ", user_id
 training_menu_2 = TrainingMenu.create!(training_menu: "腹筋", user_id: user_1.id)
 training_menu_3 = TrainingMenu.create!(training_menu: "背筋", user_id: user_1.id)
 training_report_1 = TrainingReport.create!(content: "レポート１", user_id: user_1.id)
+training_1 = Training.create!(title: "腕立て伏せ", content: "15回3セット", start_time: 2020/10/14, growing_parts: "大胸筋", training_menus_id: 1)
+training_2 = Training.create!(title: "腹筋", content: "20回3セット", start_time: 2020/10/15, growing_parts: "腹直筋", training_menus_id: 2)
+training_3 = Training.create!(title: "背筋", content: "10回3セット", start_time: 2020/10/16, growing_parts: "広背筋", training_menus_id: 3)
