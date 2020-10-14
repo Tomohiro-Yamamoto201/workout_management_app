@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_102625) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "growing_parts", null: false
     t.bigint "user_id", null: false
-    t.bigint "training_menus_id", null: false
-    t.index ["training_menus_id"], name: "index_trainings_on_training_menus_id"
+    t.bigint "training_menu_id", null: false
+    t.index ["training_menu_id"], name: "index_trainings_on_training_menu_id"
     t.index ["user_id"], name: "index_trainings_on_user_id"
   end
 
@@ -81,6 +81,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_102625) do
 
   add_foreign_key "training_menus", "users"
   add_foreign_key "training_reports", "users"
-  add_foreign_key "trainings", "training_menus", column: "training_menus_id"
+  add_foreign_key "trainings", "training_menus"
   add_foreign_key "trainings", "users"
 end

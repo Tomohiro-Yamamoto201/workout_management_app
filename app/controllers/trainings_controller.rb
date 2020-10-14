@@ -52,6 +52,6 @@ class TrainingsController < ApplicationController
       private
     
       def training_parameter
-        params.require(:training).permit(:title, :content, :start_time, :growing_parts)
+        params.require(:training).permit(:title, :content, :start_time, :growing_parts, :training_menu_id)
       end
 end
