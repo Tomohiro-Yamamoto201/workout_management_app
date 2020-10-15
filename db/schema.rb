@@ -15,10 +15,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_102625) do
   create_table "training_menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "training_menu"
     t.datetime "published_at"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "start_time"
     t.index ["user_id"], name: "index_training_menus_on_user_id"
   end
 
@@ -32,14 +31,14 @@ ActiveRecord::Schema.define(version: 2020_10_08_102625) do
   end
 
   create_table "trainings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "start_time"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "start_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "growing_parts", null: false
-    t.bigint "user_id", null: false
-    t.bigint "training_menu_id", null: false
+    t.bigint "user_id"
+    t.bigint "training_menu_id"
     t.index ["training_menu_id"], name: "index_trainings_on_training_menu_id"
     t.index ["user_id"], name: "index_trainings_on_user_id"
   end
