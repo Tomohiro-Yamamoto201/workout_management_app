@@ -15,7 +15,6 @@
     <% @training_menus.each do |training_menu| %>
       <tr>
         <td><%= training_menu.training_menu %></td>
-        <td><%= training_menu.start_time.try(:strftime,"%Y-%m-%d %H:%M") %></td>
         <td><%= link_to 'Show', training_menu_path(training_menu) %></td>
         <td><%= link_to 'Edit', edit_training_menu_path(training_menu.id) %></td>
         <td><%= link_to 'Destroy',training_menu_path(training_menu.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,11 +27,11 @@
 
 <%= link_to '新規メニュー作成', new_training_menu_path %>
 
-<%= month_calendar events: @training_menus do |date, training_menus| %>
+<%= month_calendar events: @trainings do |date, trainings| %>
     <%= date.day %>
-    <% training_menus.each do |training_menu| %>
+    <% trainings.each do |training| %>
       <div>
-        <%= link_to 'training_menu.training_menu', training_menu_path(training_menu.id) %>
+        <%= link_to 'training.training', training_path(training_menu.id) %>
       </div>
     <% end %>
 <% end %>

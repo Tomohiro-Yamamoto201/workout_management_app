@@ -1,10 +1,15 @@
     <div class="title">
-        <%= "タイトル" %> 
-        <%= "前ページで選択したメニュー名" %>
+        <%= "タイトル:" %> 
+        <%= @training_menu.training_menu %>
     </div>
 
 
 <%= form_with(model: [@training], local: true) do |form| %>
+
+    <div class="title">
+      <%= form.label :_ %>
+      <%= form.hidden_field :title, value: @training_menu.training_menu %>
+    </div>
 
     <div class="time">
       <%= form.label :スケジュール %>
@@ -21,10 +26,14 @@
       <%= form.text_field :growing_parts %>
     </div>
   
+    <div class="training_menu_id">
+      <%= form.label :_ %>
+      <%= form.hidden_field :training_menu_id, value: @training_menu.id %>
+    </div>
   
     <div class="submit">
       <%= form.submit %>
       
     </div>
-  
+    
 <% end %>

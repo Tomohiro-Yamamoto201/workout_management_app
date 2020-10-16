@@ -3,6 +3,7 @@ class TrainingMenusController < ApplicationController
   def index
     # 現在のユーザーに紐づいているトレーニングメニューを取得する
     @training_menus = TrainingMenu.where(user_id: current_user.id)
+    @trainings = Training.where(user_id: current_user.id)
   end
 
   def new

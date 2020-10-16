@@ -6,7 +6,7 @@ class TrainingsController < ApplicationController
       end
     
       def new
-        @training_menu = TrainingMenu.where(user_id:current_user.id)
+        @training_menu = TrainingMenu.where(user_id: current_user.id) .last
         @training = Training.new
       end
     
