@@ -32,8 +32,9 @@ class TrainingMenusController < ApplicationController
 
   def destroy
     @training_menu = TrainingMenu.find(params[:id])
+    @training = Training.find_by(training_menu_id: params[:id])
 #     ここは保存できたかどうかで場合わけして良いと思います。中身は変更ください。
-    if @training_menu.destroy
+    if @training_menu&&@training.destroy
         redirect_to training_menus_path, notice:"削除しました"
     else
         redirect_to trainings_path
@@ -42,10 +43,12 @@ class TrainingMenusController < ApplicationController
 
   def edit
     @training_menu = TrainingMenu.find(params[:id])
+    @training = Training.find_by(training_menu_id: params[:id])
   end
 
   def update
     @training_menu = TrainingMenu.find(params[:id])
+    @training = Training.find_by(training_menu_id: params[:id])
     if @training_menu.update(training_menu_parameter)
       redirect_to trainings_path, notice: "編集しました"
     else
