@@ -29,9 +29,9 @@
 
 <%= month_calendar events: @trainings do |date, trainings| %>
     <%= date.day %>
-    <% trainings.each do |training| %>
+    <% @training_menus.each do |training_menu| %>
       <div>
-        <%= link_to 'training.training', training_path(training_menu.id) %>
+        <%= link_to training_menu.training_menu, training_menu_path(training_menu) %>
       </div>
     <% end %>
 <% end %>

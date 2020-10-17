@@ -14,7 +14,7 @@ class TrainingMenusController < ApplicationController
   def show
     # ビューからトレーニングメニューのidを受け取り、それをインタスタンス変数に格納する
     @training_menu = TrainingMenu.find(params[:id])
-    @training = Training.find(params[:id])
+    @training = Training.find_by(training_menu_id: params[:id])
   end
 
   def create

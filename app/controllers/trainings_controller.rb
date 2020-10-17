@@ -19,7 +19,7 @@ class TrainingsController < ApplicationController
         @training = Training.new(training_parameter)
         @training.user = current_user
         if @training.save
-            redirect_to training_menu_path(current_user.id)
+            redirect_to training_menu_path(training_menu_id)
             flash[:success] = "トレーニング予定を作成しました"
         else
             redirect_to new_training_path
