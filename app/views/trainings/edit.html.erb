@@ -1,0 +1,39 @@
+<div class="title">
+<%= "タイトル:" %> 
+<%= @training.title %>
+</div>
+
+
+<%= form_with(model: [@training], local: true) do |form| %>
+
+<div class="title">
+<%= form.label :_ %>
+<%= form.hidden_field :title, value: @training.title %>
+</div>
+
+<div class="time">
+<%= form.label :スケジュール %>
+<%= form.datetime_select :start_time %>
+</div>
+
+<div class="content">
+<%= form.label :内容 %>
+<%= form.text_field :content %>
+</div>
+
+<div class="growing_parts">
+<%= form.label :成長部位 %>
+<%= form.text_field :growing_parts %>
+</div>
+
+<div class="training_menu_id">
+<%= form.label :_ %>
+<%= form.hidden_field :training_menu_id, value: @training.training_menu_id %>
+</div>
+
+<div class="submit">
+<%= form.submit %>
+
+</div>
+
+<% end %>

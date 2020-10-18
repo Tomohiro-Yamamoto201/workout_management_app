@@ -12,14 +12,7 @@
   </thead>
 
   <tbody>
-    <% @training_menus.each do |training_menu| %>
-      <tr>
-        <td><%= training_menu.training_menu %></td>
-        <td><%= link_to 'Show', training_menu_path(training_menu) %></td>
-        <td><%= link_to 'Edit', edit_training_menu_path(training_menu.id) %></td>
-        <td><%= link_to 'Destroy',training_menu_path(training_menu.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    
   </tbody>
 </table>
 

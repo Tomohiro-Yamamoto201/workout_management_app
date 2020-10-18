@@ -28,11 +28,12 @@ class TrainingsController < ApplicationController
       end
     
       def destroy
+        @training_menu = TrainingMenu.where(user_id:current_user.id)
         @training = Training.find(params[:id])
-        if @training_menu.destroy
-            redirect_to trainings_path, notice:"削除しました"
+        if @training.destroy
+            redirect_to training_menus_path, notice:"削除しました"
         else
-            redirect_to trainings_path, notice:"削除できませんでした"
+            redirect_to trainings_menus_path, notice:"削除できませんでした"
         end
       end
     
@@ -43,7 +44,7 @@ class TrainingsController < ApplicationController
       def update
         @training = Training.find(params[:id])
         if @training.update(training_parameter)
-          redirect_to trainings_path, notice: "編集しました"
+          redirect_to training_menus_path, notice: "編集しました"
         else
           render 'edit'
         end
