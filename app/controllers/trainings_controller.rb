@@ -28,9 +28,9 @@ class TrainingsController < ApplicationController
       end
     
       def destroy
-        @training_menu = TrainingMenu.where(user_id:current_user.id)
         @training = Training.find(params[:id])
-        if @training.destroy
+        @training_menu = TrainingMenu.find_by(id:@training.training_menu_id)
+        if @training_menu.destroy
             redirect_to training_menus_path, notice:"削除しました"
         else
             redirect_to trainings_menus_path, notice:"削除できませんでした"

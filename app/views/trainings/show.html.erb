@@ -22,4 +22,4 @@
 
 <%= link_to 'メニュー編集', edit_training_path(@training) %> |
 <%= link_to '戻る', training_menus_path %>|
-<%= link_to '削除', "trainings/#{@training.id}", method: :delete %>
+<%= link_to '削除', "#{@training.id}", method: :delete %>
