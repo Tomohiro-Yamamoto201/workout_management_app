@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_102625) do
+ActiveRecord::Schema.define(version: 2020_10_21_024650) do
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "training_report_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["training_report_id"], name: "index_likes_on_training_report_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "training_menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "training_menu"
@@ -78,6 +87,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_102625) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "likes", "training_reports"
+  add_foreign_key "likes", "users"
   add_foreign_key "training_menus", "users"
   add_foreign_key "training_reports", "users"
   add_foreign_key "trainings", "training_menus"
