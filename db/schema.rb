@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_024650) do
+ActiveRecord::Schema.define(version: 2020_10_23_150310) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2020_10_21_024650) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["training_report_id"], name: "index_likes_on_training_report_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "follower_id_id", null: false
+    t.bigint "followed_id_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followed_id_id"], name: "index_relationships_on_followed_id_id"
+    t.index ["follower_id_id"], name: "index_relationships_on_follower_id_id"
   end
 
   create_table "training_menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -89,6 +98,8 @@ ActiveRecord::Schema.define(version: 2020_10_21_024650) do
 
   add_foreign_key "likes", "training_reports"
   add_foreign_key "likes", "users"
+  add_foreign_key "relationships", "users", column: "followed_id_id"
+  add_foreign_key "relationships", "users", column: "follower_id_id"
   add_foreign_key "training_menus", "users"
   add_foreign_key "training_reports", "users"
   add_foreign_key "trainings", "training_menus"

@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_many :training_reports
   has_many :training_menus
   has_many :trainings
-
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :training_report
   
 
   # Include default devise modules. Others available are:
