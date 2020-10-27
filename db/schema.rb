@@ -22,12 +22,13 @@ ActiveRecord::Schema.define(version: 2020_10_23_150310) do
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "follower_id_id", null: false
-    t.bigint "followed_id_id", null: false
+    t.bigint "user_id"
+    t.bigint "follow_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["followed_id_id"], name: "index_relationships_on_followed_id_id"
-    t.index ["follower_id_id"], name: "index_relationships_on_follower_id_id"
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "training_menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -98,8 +99,8 @@ ActiveRecord::Schema.define(version: 2020_10_23_150310) do
 
   add_foreign_key "likes", "training_reports"
   add_foreign_key "likes", "users"
-  add_foreign_key "relationships", "users", column: "followed_id_id"
-  add_foreign_key "relationships", "users", column: "follower_id_id"
+  add_foreign_key "relationships", "users"
+  add_foreign_key "relationships", "users", column: "follow_id"
   add_foreign_key "training_menus", "users"
   add_foreign_key "training_reports", "users"
   add_foreign_key "trainings", "training_menus"
