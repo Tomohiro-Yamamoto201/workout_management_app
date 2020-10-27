@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :trainings
   resources :training_menus
   resources :training_reports
+  resources :relationships, only: [:create, :destroy]
   resources :likes
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
