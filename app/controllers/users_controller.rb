@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  include Pagy::Backend
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 

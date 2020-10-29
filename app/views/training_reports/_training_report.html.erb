@@ -1,5 +1,13 @@
 #一つの投稿を表示するパーシャル
 
+<% @training_reports.each do |training_report| %>
+    <p><%= training_report.name %></p>
+    <ul>
+      <li><%= training_report.content %></li>
+    </ul>
+  <% end %>
+  <%== pagy_nav(@pagy) %>
+
 <li id="training_report-<%= training_report.id %>">
   <%= link_to gravatar_for(training_report).user, size: 50),training_report .user %>
   <span class="user"><%= link_to training_report.user.name, training_report.user %></span>
