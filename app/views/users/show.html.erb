@@ -3,4 +3,4 @@
 
 <%= link_to '筋トレメニューを作成する', training_menus_path %><br>
 
-<%= link_to '筋トレ内容を報告する', training_reports_path %>
+<%= link_to '筋トレ内容を報告する', training_reports_path(id: current_user.id) %>

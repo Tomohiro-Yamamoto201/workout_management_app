@@ -1,20 +1,19 @@
-<% provide(:title, @user.name) %>
+<% provide(:content, @user.nickname) %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
         <%= gravatar_for @user %>
-        <%= @user.name %>
+        <%= @user.nickname %>
       </h1>
     </section>
   </aside>
   <div class="col-md-8">
     <% if @user.training_reports.any? %>
-      <h3>TrainingReports (<%= @user.training_reports.count %>)</h3>
+      <h3>@training_reports(<%= @user.training_reports.count %>)</h3>
       <ol class="training_reports">
         <%= render @training_reports %>
       </ol>
-      <%= will_paginate @training_reports %>
     <% end %>
   </div>
 </div>
