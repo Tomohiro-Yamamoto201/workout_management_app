@@ -23,6 +23,8 @@ gem 'pry-byebug'
 
 gem 'pagy'
 
+gem 'faker'
+
 #bootstrap
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'

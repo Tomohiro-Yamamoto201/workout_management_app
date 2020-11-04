@@ -23,3 +23,9 @@ training_report_1 = TrainingReport.create!(content: "レポート１", user_id: 
 training_1 = Training.create!(title: "腕立て伏せ", content: "15回3セット", start_time: "2020-10-14 8:30", growing_parts: "大胸筋", training_menu_id: 1)
 training_2 = Training.create!(title: "腹筋", content: "20回3セット", start_time: "2020-10-15 9:30", growing_parts: "腹直筋", training_menu_id: 2)
 training_3 = Training.create!(title: "背筋", content: "10回3セット", start_time: "2020-10-16 10:30", growing_parts: "広背筋", training_menu_id: 3)
+
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(5)
+  users.each { |user| user.training_reports.create!(content: content) }
+end
