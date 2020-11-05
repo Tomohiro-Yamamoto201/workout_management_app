@@ -10,7 +10,7 @@
   </aside>
   <div class="col-md-8">
     <% if @user.training_reports.any? %>
-      <h3>@training_reports(<%= @user.training_reports.count %>)</h3>
+      <h3>全ての投稿数(<%= @user.training_reports.count %>)</h3>
       <ol class="training_reports">
         <%= render @training_reports %>
       </ol>
