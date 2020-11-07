@@ -25,6 +25,8 @@ gem 'pagy'
 
 gem 'faker'
 
+gem 'mini_racer'
+
 #bootstrap
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
