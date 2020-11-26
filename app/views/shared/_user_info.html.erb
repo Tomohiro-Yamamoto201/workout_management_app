@@ -1,0 +1,4 @@
+<%= link_to gravatar_for(current_user), current_user %>
+<h1><%= current_user.nickname %></h1>
+<span><%= link_to "プロフィールをみる", current_user %></span>
+<span><%= pluralize(current_user.training_reports.count, "training_report") %></span>

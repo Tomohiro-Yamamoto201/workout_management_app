@@ -1,19 +1,23 @@
 <% provide(:title, @user.nickname) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.nickname %>
-      </h1>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <% if @user.training_reports.any? %>
-      <h3>全ての投稿数(<%= @user.training_reports.count %>)</h3>
-      <ol class="training_reports">
-        <%= render @training_reports %>
-      </ol>
-    <% end %>
+  <div class="row">
+    <aside class="col-md-4">
+        <section class="user_info">
+        <%= render 'shared/user_info' %>
+        </section>
+        <section class="training_report_form">
+        <%= render 'shared/training_report_form' %>
+        </section>
+            <h1>
+                <%= gravatar_for @user %>
+                <%= @user.nickname %>
+            </h1>
+    </aside>
+    <div class="col-md-8">
+        <% if @user.training_reports.any? %>
+        <h3>全ての投稿数(<%= @user.training_reports.count %>)</h3>
+        <ol class="training_reports">
+            <%= render @training_reports %>
+        </ol>
+        <% end %>
+    </div>
   </div>
-</div>
