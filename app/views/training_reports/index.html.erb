@@ -5,7 +5,7 @@
         <%= render 'shared/user_info' %>
         </section>
         <section class="training_report_form">
-        <%= render 'shared/training_report_form' %>
+        <%= link_to '投稿する', new_training_report_path %>
         </section>
             <h1>
                 <%= gravatar_for @user %>
