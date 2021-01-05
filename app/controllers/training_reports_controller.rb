@@ -3,13 +3,14 @@ class TrainingReportsController < ApplicationController
     before_action :logged_in_user, only: [:new, :create, :destroy]
 
     def index
-      @user = User.find(params[:id])
+      @training_reports = TrainingReport.where(user_id: current_user.id)
+      @user = User.find_by(params[:id])
       @pagy, @training_reports = pagy(TrainingReport.all)
     end
     
     def new
       # インスタンス変数を作成
-      @training_report = TrainingReport.new
+      @user_training_report = TrainingReport.new
     end
 
     def show
@@ -17,13 +18,13 @@ class TrainingReportsController < ApplicationController
     end
 
     def create
-      @training_report = TrainingReport.new(training_report_parameter)
-      @training_report.user = current_user
-      if @training_report.save
-        redirect_to training_reports_path(current_user.id)
+      @user_training_report = TrainingReport.new(training_report_parameter)
+      @user_training_report.user = current_user
+      if @user_training_report.save
+        redirect_to user_training_reports_path(current_user.id)
         flash[:success] = "投稿が完了しました"
       else
-        redirect_to training_reports_path(current_user.id)
+        redirect_to user_training_reports_path(current_user.id)
         flash[:danger] = "投稿に失敗しました"
       end
 
@@ -37,7 +38,7 @@ class TrainingReportsController < ApplicationController
 
         def training_report_parameter
 
-            params.require(:training_report).permit(:content)
+            params.require(:user_training_report).permit(:content)
         end
 
 end

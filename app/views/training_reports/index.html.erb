@@ -1,11 +1,11 @@
-<% provide(:title, @user.nickname) %>
+<% provide(:title, "@user.nickname") %>
   <div class="row">
     <aside class="col-md-4">
         <section class="user_info">
         <%= render 'shared/user_info' %>
         </section>
         <section class="training_report_form">
-        <%= link_to '投稿する', new_training_report_path %>
+        <%= link_to '投稿する', new_user_training_report_path %>
         </section>
             <h1>
                 <%= gravatar_for @user %>

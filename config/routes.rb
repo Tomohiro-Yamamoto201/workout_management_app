@@ -10,10 +10,11 @@ Rails.application.routes.draw do
     omniauth:      'users/omniauth'
   }
   root 'users#index'
-  resources :users
+  resources :users do
+  resources :training_reports
+  end
   resources :trainings
   resources :training_menus
-  resources :training_reports
   resources :relationships, only: [:create, :destroy]
   resources :likes
 
