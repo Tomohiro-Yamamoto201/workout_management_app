@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>投稿内容</strong>
+  <%= @user_training_report.content %>
+</p>
+
+<%= link_to '戻る', user_training_reports_path %>|
+<%= link_to '削除', "#{@user_training_report.id}", method: :delete %>

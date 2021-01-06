@@ -14,14 +14,14 @@ class TrainingReportsController < ApplicationController
     end
 
     def show
-        
+      @user_training_report = TrainingReport.find(params[:id])
     end
 
     def create
       @user_training_report = TrainingReport.new(training_report_parameter)
       @user_training_report.user = current_user
       if @user_training_report.save
-        redirect_to user_training_reports_path(current_user.id)
+        redirect_to user_training_report_path(current_user.id)
         flash[:success] = "投稿が完了しました"
       else
         redirect_to user_training_reports_path(current_user.id)
