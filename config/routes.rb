@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users do
   resources :training_reports
   end
+  post 'users/:user_id/training_reports/new' => 'training_reports#show'
   resources :trainings
   resources :training_menus
   resources :relationships, only: [:create, :destroy]
