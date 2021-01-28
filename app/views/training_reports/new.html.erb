@@ -1,8 +1,8 @@
-<%= form_with(model: @training_report, local: true) do |form| %>
+<%= form_with(model: @training_reports, local: true) do |form| %>
 
     <%= render 'shared/error_messages', object: form.object %>
 
-    <%= form.hidden_field :id, value: @user_training_report.id %>
+    
 
     <div class="field">
       <%= form.label :投稿内容 %>
@@ -13,5 +13,5 @@
       <%= form.submit "投稿" %>
       
     </div>
-    
+
 <% end %>

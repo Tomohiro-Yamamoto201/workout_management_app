@@ -10,18 +10,19 @@ class TrainingReportsController < ApplicationController
     
     def new
       # インスタンス変数を作成
-      @user_training_report = TrainingReport.new
+      @training_report = TrainingReport.new
     end
 
     def show
-      @user_training_report = TrainingReport.find(params[:id])
+      @training_report = TrainingReport.find(params[:id])
     end
 
     def create
-      @user_training_report = TrainingReport.new(training_report_parameter)
-      @user_training_report.user = current_user
-      if @user_training_report.save
-        redirect_to user_training_report_path(@user_training_report.id)
+      @training_report = TrainingReport.new(training_report_parameter)
+      @training_report.user = current_user
+      @user = User.find_by(params[:id])
+      if @training_report.save
+        redirect_to user_training_report_path(@user, @training_report)
         flash[:success] = "投稿が完了しました"
       else
         redirect_to user_training_reports_path(current_user.id)
@@ -38,7 +39,7 @@ class TrainingReportsController < ApplicationController
 
         def training_report_parameter
 
-            params.require(:user_training_report).permit(:content)
+            params.require(:training_report).permit(:content)
         end
 
 end
