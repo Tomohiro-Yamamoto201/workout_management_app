@@ -1,6 +1,6 @@
 class TrainingReportsController < ApplicationController
     include Pagy::Backend
-    before_action :logged_in_user, only: [:new, :create, :destroy]
+    before_action :logged_in_user, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
     def index
       @training_reports = TrainingReport.where(user_id: current_user.id)
@@ -10,6 +10,7 @@ class TrainingReportsController < ApplicationController
     
     def new
       # インスタンス変数を作成
+      @user = User.find(params[:user_id])
       @training_report = TrainingReport.new
     end
 
