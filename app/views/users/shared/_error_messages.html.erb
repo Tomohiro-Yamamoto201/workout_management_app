@@ -1,13 +1,13 @@
-<% if @user.errors.any? %>
+<% if @training_report.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <h2 class="alert alert-danger">
       <%= I18n.t("errors.messages.not_saved",
-                 count: resource.errors.count,
-                 resource: resource.class.model_name.human.downcase)
+                 count: @training_report.errors.count,
+                 resource: @training_report.class.model_name.human.downcase)
        %>
     </h2>
     <ul>
-      <% resource.errors.full_messages.each do |message| %>
+      <% @training_report.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>

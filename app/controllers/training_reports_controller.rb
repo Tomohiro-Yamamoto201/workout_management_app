@@ -26,7 +26,7 @@ class TrainingReportsController < ApplicationController
         redirect_to user_training_report_path(@user, @training_report)
         flash[:success] = "投稿が完了しました"
       else
-        redirect_to user_training_reports_path(current_user.id)
+        render 'new'
         flash[:danger] = "投稿に失敗しました"
       end
       
