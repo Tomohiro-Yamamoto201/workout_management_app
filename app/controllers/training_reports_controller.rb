@@ -5,7 +5,7 @@ class TrainingReportsController < ApplicationController
     def index
       @training_reports = TrainingReport.where(user_id: current_user.id)
       @user = User.find_by(params[:id])
-      @pagy, @training_reports = pagy(TrainingReport.all)
+      @pagy, @training_reports = pagy(@training_reports)
     end
     
     def new

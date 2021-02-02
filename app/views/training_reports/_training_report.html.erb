@@ -1,11 +1,11 @@
-#一つの投稿を表示するパーシャル
 
-    <p><%= @user.nickname %></p>
 <% @training_reports.each do |training_report| %>
     <ul>
+      <%= @user.nickname %>
       <li><%= training_report.content %></li>
       <%= time_ago_in_words(training_report.created_at) %>前に作成
     </ul>
-  <% end %>
-  <%== pagy_nav(@pagy) %>
+<% end %>
+<%== pagy_nav(@pagy) %>
 
+# Qiita記事作成用に残しておきます
