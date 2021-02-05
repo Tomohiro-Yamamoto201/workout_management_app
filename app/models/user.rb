@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
   uniqueness: { case_sensitive: false }
 
-  has_many :training_reports
+  has_many :training_reports, dependent: :destroy
   has_many :training_menus
   has_many :trainings
 

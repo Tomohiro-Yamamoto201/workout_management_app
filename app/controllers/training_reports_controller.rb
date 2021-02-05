@@ -5,6 +5,7 @@ class TrainingReportsController < ApplicationController
     def index
       @training_reports = TrainingReport.where(user_id: current_user.id)
       @user = User.find_by(params[:id])
+      @users = User.all
       @pagy, @training_reports = pagy(@training_reports)
     end
     
@@ -24,7 +25,7 @@ class TrainingReportsController < ApplicationController
       @user = User.find_by(params[:id])
       if @training_report.save
         redirect_to user_training_report_path(@user, @training_report)
-        flash[:success] = "投稿が完了しました"
+        flash[:success] = "投稿が完了しました"  
       else
         render 'new'
         flash[:danger] = "投稿に失敗しました"
@@ -33,7 +34,17 @@ class TrainingReportsController < ApplicationController
     end
     
     def destroy
-    
+      @training_report = TrainingReport.find(params[:id])
+      @user = User.find_by(params[:id])
+      if @training_report.user_id == current_user.id
+        if @training_report.destroy
+          redirect_to user_training_reports_path(@training_report)
+          flash[:success] = "投稿を削除しました"
+        else
+          redirect_to user_training_reports_path(@training_report)
+          flash[:danger] = "投稿の削除に失敗しました"
+        end
+      end
     end
 
     private

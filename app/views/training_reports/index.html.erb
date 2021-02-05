@@ -12,14 +12,7 @@
         <% if @user.training_reports.any? %>
         <h3>全ての投稿数(<%= @user.training_reports.count %>)</h3>
         <ol class="training_reports">
-            <% @training_reports.each do |training_report| %>
-                <ul>
-                <%= @user.nickname %>
-                <li><%= training_report.content %></li>
-                <%= time_ago_in_words(training_report.created_at) %>前に作成
-                </ul>
-            <% end %>
-            <%== pagy_nav(@pagy) %>
+            <%= render partial: 'training_report' %>
         </ol>
         <% end %>
     </div>

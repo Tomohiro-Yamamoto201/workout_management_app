@@ -1,11 +1,14 @@
-
 <% @training_reports.each do |training_report| %>
-    <ul>
-      <%= @user.nickname %>
+  <ul>
+    <% @users.each do |user| %>
+      <%= link_to user.nickname,user %>
+    <% end %>
       <li><%= training_report.content %></li>
       <%= time_ago_in_words(training_report.created_at) %>前に作成
-    </ul>
+      <% if user_signed_in? && current_user.id == training_report.user_id %>
+          | <%= link_to "削除", "training_reports/#{training_report.id}", method: :delete,
+                      data: { confirm: "投稿を削除しますか?" } %>
+      <% end %>
+  </ul>
 <% end %>
 <%== pagy_nav(@pagy) %>
-
-# Qiita記事作成用に残しておきます

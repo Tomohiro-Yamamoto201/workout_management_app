@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'training_menus/new'
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords:     'users/passwords',
