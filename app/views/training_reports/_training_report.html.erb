@@ -1,7 +1,7 @@
 <% @training_reports.each do |training_report| %>
   <ul>
+      <%= link_to current_user.nickname,current_user %>
     <% @users.each do |user| %>
-      <%= link_to user.nickname,user %>
     <% end %>
       <li><%= training_report.content %></li>
       <%= time_ago_in_words(training_report.created_at) %>前に作成
