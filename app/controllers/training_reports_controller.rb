@@ -3,7 +3,7 @@ class TrainingReportsController < ApplicationController
     before_action :logged_in_user, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
     def index
-      @training_reports = TrainingReport.where(user_id: current_user.id)
+      @training_reports = TrainingReport.all
       @user = User.find_by(params[:id])
       @users = User.all
       @pagy, @training_reports = pagy(@training_reports)

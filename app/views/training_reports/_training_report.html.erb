@@ -1,4 +1,4 @@
-<% @users.each do |user| %>
+
   <% @training_reports.each do |training_report| %>
     <ul>
         <%= link_to current_user.nickname,current_user %>
@@ -10,5 +10,5 @@
         <% end %>
     </ul>
   <% end %>
-<% end %>
+
 <%== pagy_nav(@pagy) %>
