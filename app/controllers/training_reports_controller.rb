@@ -6,6 +6,8 @@ class TrainingReportsController < ApplicationController
       @training_reports = TrainingReport.all
       @user = User.find_by(params[:id])
       @users = User.all
+      # 各投稿者の名前を表示するためのインスタンス変数
+      
       @pagy, @training_reports = pagy(@training_reports)
     end
     

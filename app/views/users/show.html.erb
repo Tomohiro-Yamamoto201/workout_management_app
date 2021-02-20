@@ -1,6 +1,17 @@
-<h1>こんにちは、<%= current_user.nickname %>さん</h1>
-<p id="notice"><%= notice %></p>
+  <% if logged_in? %>
+    <h1>こんにちは、<%= current_user.nickname %>さん</h1>
+    <p id="notice"><%= notice %></p>
 
-<%= link_to '筋トレメニューを作成する', training_menus_path %><br>
+    <%= link_to '筋トレメニューを作成する', training_menus_path %><br>
 
-<%= link_to '筋トレ内容を報告する', user_training_reports_path(@user, @training_reports) %>
+    <%= link_to '筋トレ内容を報告する', user_training_reports_path(@user, @training_reports) %>
+  <% end %>
+
+  <div class="col-md-8">
+        <% if @user.training_reports.any? %>
+        <h3>全ての投稿数(<%= @user.training_reports.count %>)</h3>
+        <ol class="training_reports">
+          <%= render partial: 'training_report' %>
+        </ol>
+        <% end %>
+  </div>

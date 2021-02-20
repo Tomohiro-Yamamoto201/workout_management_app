@@ -1,7 +1,7 @@
 
   <% @training_reports.each do |training_report| %>
     <ul>
-        <%= link_to current_user.nickname,current_user %>
+        <%= link_to training_report.user.nickname,training_report.user %>
         <li><%= training_report.content %></li>
         <%= time_ago_in_words(training_report.created_at) %>前に作成
         <% if user_signed_in? && current_user.id == training_report.user_id %>
@@ -11,4 +11,4 @@
     </ul>
   <% end %>
 
-<%== pagy_nav(@pagy) %>
+  <%== pagy_nav(@pagy) %>
