@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include Pagy::Backend
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :logged_in_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -11,7 +11,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @training_reports = TrainingReport.where(user_id: @user.id)
 
+    @pagy, @training_reports = pagy(@training_reports)
   end
 
   def new
@@ -56,11 +58,6 @@ class UsersController < ApplicationController
 
     # beforeフィルター
 
-    # 正しいユーザーかどうかを確認
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
 
     # 管理者かどうか確認
     def admin_user

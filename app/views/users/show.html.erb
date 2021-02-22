@@ -1,17 +1,25 @@
-  <% if logged_in? %>
+  <% if logged_in? && correct_user %>
     <h1>こんにちは、<%= current_user.nickname %>さん</h1>
     <p id="notice"><%= notice %></p>
 
     <%= link_to '筋トレメニューを作成する', training_menus_path %><br>
-
-    <%= link_to '筋トレ内容を報告する', user_training_reports_path(@user, @training_reports) %>
+    <%= link_to '掲示板に投稿する', new_user_training_report_path(@user, @training_reports) %><br>
+    <%= link_to '全体掲示板に移動する', user_training_reports_path(@user, @training_reports) %>
   <% end %>
 
   <div class="col-md-8">
         <% if @user.training_reports.any? %>
         <h3>全ての投稿数(<%= @user.training_reports.count %>)</h3>
         <ol class="training_reports">
-          <%= render partial: 'training_report' %>
+          <% @training_reports.each do |training_report| %>
+             <li><%= training_report.content %></li>
+                <%= time_ago_in_words(training_report.created_at) %>前に作成
+                <% if user_signed_in? && current_user.id == training_report.user_id %>
+                    | <%= link_to "削除", "training_reports/#{training_report.id}", method: :delete,
+                                data: { confirm: "投稿を削除しますか?" } %>
+                <% end %>
+          <% end %>
+            <%== pagy_nav(@pagy) %>
         </ol>
         <% end %>
   </div>

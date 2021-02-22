@@ -1,13 +1,12 @@
 class TrainingReportsController < ApplicationController
     include Pagy::Backend
-    before_action :logged_in_user, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    before_action :logged_in_user, only: [:new, :create, :show, :edit, :update, :destroy]
 
     def index
       @training_reports = TrainingReport.all
       @user = User.find_by(params[:id])
       @users = User.all
-      # 各投稿者の名前を表示するためのインスタンス変数
-      
+
       @pagy, @training_reports = pagy(@training_reports)
     end
     
@@ -52,8 +51,9 @@ class TrainingReportsController < ApplicationController
     private
 
         def training_report_parameter
-
             params.require(:training_report).permit(:content)
         end
+
+       
 
 end

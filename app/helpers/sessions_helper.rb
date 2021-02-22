@@ -23,4 +23,11 @@ module SessionsHelper
     def store_location
       session[:forwarding_url] = request.original_url if request.get?
     end
+
+    # 正しいユーザーかどうかを確認
+    def correct_user
+      @user = User.find(params[:id])
+      @user == current_user
+    end
+
 end
