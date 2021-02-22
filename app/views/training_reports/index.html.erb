@@ -9,8 +9,8 @@
         </section>
     </aside>
     <div class="col-md-8">
-        <% if @user.training_reports.any? %>
-        <h3>全ての投稿数(<%= @user.training_reports.count %>)</h3>
+        <% if @training_reports.any? %>
+        <h3>全ての投稿数(<%= @pagy.count %>)</h3>
         <ol class="training_reports">
           <%= render partial: 'training_report' %>
         </ol>

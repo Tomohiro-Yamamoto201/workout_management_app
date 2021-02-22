@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :gender, :height, :body_weight, :born_on])
     end
     
+        # 編集画面から画像を受け取れるよう設定
+    def configure_permitted_parameters
+        devise_parameter_sanitizer.permit(:account_update, keys: %i(image))
+    end
 
     def after_sign_in_path_for(resource)
         user_path(resource) # ログイン後に遷移するpathを設定
@@ -29,11 +33,6 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    # 正しいユーザーかどうか確認
-    def correct_user
-        @user = User.find(params[:id])
-        redirect_to(root_url) unless @user == current_user
-    end
 
 
 

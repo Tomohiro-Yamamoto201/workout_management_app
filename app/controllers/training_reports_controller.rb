@@ -6,7 +6,6 @@ class TrainingReportsController < ApplicationController
       @training_reports = TrainingReport.all
       @user = User.find_by(params[:id])
       @users = User.all
-
       @pagy, @training_reports = pagy(@training_reports)
     end
     
