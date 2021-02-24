@@ -1,5 +1,6 @@
   <% if logged_in? && correct_user %>
     <h1>こんにちは、<%= current_user.nickname %>さん</h1>
+
     <p id="notice"><%= notice %></p>
 
     <%= link_to '筋トレメニューを作成する', training_menus_path %><br>

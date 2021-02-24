@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @training_reports = TrainingReport.where(user_id: @user.id)
-
     @pagy, @training_reports = pagy(@training_reports)
   end
 
@@ -37,6 +36,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
+      redirect_to @user
     else
       render 'edit'
     end

@@ -28,7 +28,7 @@ module I18n
 
     # Returns the current default locale. Defaults to :'en'
     def default_locale
-      @@default_locale ||= :en
+      @@default_locale ||= :ja
     end
 
     # Sets the current default locale. Used to set a custom default locale.
