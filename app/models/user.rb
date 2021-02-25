@@ -37,6 +37,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
 
   #  これは１つの画像ファイルを添付するためのもので、複数ファイルを添付したい場合はhas_many_attached :imagesとします。
   has_one_attached :image

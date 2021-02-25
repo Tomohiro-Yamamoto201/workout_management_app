@@ -48,7 +48,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     resource_updated = update_resource(resource, account_update_params)
     yield resource if block_given?
-    if resource_updated
+    if account_update_params[:image].present?
+      resource.image.attach(account_update_params[:image])   
       set_flash_message_for_update(resource, prev_unconfirmed_email)
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
 
@@ -78,7 +79,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :gender, :height, :body_weight, :born_on])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :gender, :height, :body_weight, :born_on, :image])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

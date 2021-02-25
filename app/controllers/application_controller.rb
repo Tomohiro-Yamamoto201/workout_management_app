@@ -6,16 +6,13 @@ class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     private
-
+    
+    # 編集画面から画像を受け取れるよう設定
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :gender, :height, :body_weight, :born_on])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :gender, :height, :body_weight, :born_on, :image])
+        devise_parameter_sanitizer.permit(:account_update, keys: [ :image])
     end
     
-        # 編集画面から画像を受け取れるよう設定
-    def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:account_update, keys: %i(image))
-    end
-
     def after_sign_in_path_for(resource)
         user_path(resource) # ログイン後に遷移するpathを設定
     end
