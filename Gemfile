@@ -38,7 +38,7 @@ gem 'faker'
 gem 'mini_racer'
 
 #bootstrap
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 # Use sqlite3 as the database for Active Record
