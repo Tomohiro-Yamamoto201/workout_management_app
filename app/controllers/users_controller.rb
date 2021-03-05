@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @training_reports = TrainingReport.where(user_id: @user.id)
     @pagy, @training_reports = pagy(@training_reports)
+
   end
 
   def new

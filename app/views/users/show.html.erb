@@ -1,6 +1,8 @@
   <% if logged_in? && correct_user %>
     <h1>こんにちは、<%= current_user.nickname %>さん</h1>
-
+        <% if @user.image.attached? %>
+            <%= image_tag @user.image.variant(resize_to_fill: [150, 150]) %>
+        <% end %>   
     <p id="notice"><%= notice %></p>
 
     <%= link_to '筋トレメニューを作成する', training_menus_path %><br>
