@@ -16,6 +16,7 @@ class TrainingReportsController < ApplicationController
     end
 
     def show
+      @user = User.find(params[:id])
       @training_report = TrainingReport.find(params[:id])
     end
 

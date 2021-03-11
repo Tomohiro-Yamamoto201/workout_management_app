@@ -1,5 +1,8 @@
 
-    <%= link_to gravatar_for(current_user, size:50), current_user %>
+
     <h1><%= current_user.nickname %></h1>
+        <% if @user.image.attached? %>
+            <%= image_tag @user.image.variant(resize_to_fill: [150, 150]) %>
+        <% end %><br>
     <span><%= link_to "プロフィールをみる", current_user %></span>
     <span><%= current_user.training_reports.count %>個の投稿があります</span>

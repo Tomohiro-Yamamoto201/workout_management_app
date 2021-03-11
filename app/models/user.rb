@@ -40,7 +40,7 @@ class User < ApplicationRecord
          
 
   #  これは１つの画像ファイルを添付するためのもので、複数ファイルを添付したい場合はhas_many_attached :imagesとします。
-  has_one_attached :image
+  has_one_attached :image, dependent: :destroy
   # ファイルを添付する
   # user.image.attach(io: File.open("/path/to/face.jpg"), filename: "face.jpg", content_type: "image/jpg")
 
