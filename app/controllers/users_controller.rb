@@ -36,6 +36,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    if @user.image.attached?
+      @user.image.purge_later
+    end
+
     if @user.update_attributes(user_params)
       redirect_to @user
     else
@@ -44,9 +49,21 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "ユーザーを削除しました。"
-    redirect_to users_url
+    @user = User.find(params[:id])
+    if @user.image.attached?
+      if @user.image.purge_later && @user.image.destroy
+        redirect_to users_url
+      else
+        render 'edit'
+      end
+    else
+      if @user.destroy
+        flash[:success] = "ユーザーを削除しました。"
+        redirect_to users_url
+      else
+        render 'edit'
+      end
+    end
   end
 
 

@@ -32,9 +32,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :"プロフィール画像" %><br />
+    <%= f.label :"プロフィール画像(新しい画像で更新すると以前登録した画像を上書きします)" %><br />
     <%= f.file_field :image, autocomplete: "image" %>
   </div>
+
+  <%= link_to "プロフィール画像の削除", users_url, method: :delete,
+                                  data: { confirm: "写真を削除しますか?" } %>
 
   <div class="actions">
     <%= f.submit "Update" %>
