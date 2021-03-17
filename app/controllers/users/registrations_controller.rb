@@ -50,6 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     resource_updated = update_resource(resource, account_update_params)
     yield resource if block_given?
+
     if resource_updated
       set_flash_message_for_update(resource, prev_unconfirmed_email)
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
@@ -64,7 +65,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    super
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+
+    if resource.image.attached?
+      if resource.image.purge_later && resource.image.destroy
+        redirect_to users_path(resource)
+        binding.pry
+      else
+        render 'edit'
+        flash[:alert] = "画像を削除できませんでした。"
+      end
+    else
+      if resource.destroy
+        flash[:success] = "ユーザーを削除しました。"
+        redirect_to users_url
+      else
+        render 'edit'
+      end
+    end
+
   end
 
   # GET /resource/cancel
