@@ -11,7 +11,7 @@ gem 'mysql2'
 
 source 'https://rubygems.org'
  
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 gem 'mini_magick'
 
